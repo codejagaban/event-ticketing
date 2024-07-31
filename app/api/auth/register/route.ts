@@ -1,19 +1,20 @@
 import { NextResponse } from 'next/server';
 import { registerUser } from '@directus/sdk';
 import directus from "@/lib/directus";
+import { User } from '@/types';
 
 
 export async function POST(request: Request) {
   try {
     const { first_name, last_name, email, password, organization_name, organization_phone } = await request.json();
+    const options = {
+      first_name,
+      last_name,
+      organization_name,
+      organization_phone,
+    };
     const result = await directus.request(
-      registerUser(email, password, {
-          first_name,
-          last_name,
-          organization_name,
-          organization_phone,
-
-      })
+      registerUser<User>(email, password, options)
     );
     return NextResponse.json({ message: "Account Created!" }, { status: 201 });
   } catch (e: any) {

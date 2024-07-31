@@ -31,6 +31,8 @@ export default function AuthForm({
     first_name: "",
     last_name: "",
     email: "",
+    organization_name: "",
+    organization_phone: "",
     password: "",
   });
 
@@ -47,55 +49,75 @@ export default function AuthForm({
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <h1>{title}</h1>
-      {isFullForm && (
-        <>
-          <input
-            type="text"
-            placeholder="First Name"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleInputChange}
-            required
-          />
-        </>
-      )}
-      <input
-        type="email"
-        placeholder="Email Address"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Enter your Password"
-        name="password"
-        value={formData.password}
-        required
-        onChange={handleInputChange}
-      />
-      <button>
-        {buttonText}
-      </button>
-      <p>
-        {linkDescription}
-        <Link
-          href={linkHref}
-        >
-          {linkText}
-        </Link>
-      </p>
-    </form>
+    <div className="flex items-center justify-center min-h-screen p-5">
+      <form
+        onSubmit={handleFormSubmit}
+        className=" max-w-[600px] w-full bg-white p-8 rounded shadow-md"
+      >
+        <h1 className=" text-center text-2xl font-semibold">{title}</h1>
+        {isFullForm && (
+          <>
+            <div className="">
+              <label htmlFor="first_name" className="text-sm">
+                First Name:
+              </label>
+              <input
+                type="text"
+                placeholder="First Name"
+                name="first_name"
+                value={formData.first_name}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Organization Name"
+              name="organization_name"
+              value={formData.organization_name}
+              onChange={handleInputChange}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Organization Phone"
+              name="organization_phone"
+              value={formData.organization_phone}
+              onChange={handleInputChange}
+              required
+            />
+          </>
+        )}
+        <input
+          type="email"
+          placeholder="Email Address"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Enter your Password"
+          name="password"
+          value={formData.password}
+          required
+          onChange={handleInputChange}
+        />
+        <button>{buttonText}</button>
+        <p>
+          {linkDescription}
+          <Link href={linkHref}>{linkText}</Link>
+        </p>
+      </form>
+    </div>
   );
 }
