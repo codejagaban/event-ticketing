@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Card, CardHeader, CardTitle } from "../ui/card";
+import { cn } from "@/lib/utils";
 
 interface Data {
   first_name?: string;
@@ -52,71 +56,106 @@ export default function AuthForm({
     <div className="flex items-center justify-center min-h-screen p-5">
       <form
         onSubmit={handleFormSubmit}
-        className=" max-w-[600px] w-full bg-white p-8 rounded shadow-md"
       >
-        <h1 className=" text-center text-2xl font-semibold">{title}</h1>
+        <Card className="md:w-[600px] py-5 md:px-10 px-5">
+        <CardHeader>
+        <CardTitle className="text-3xl text-center">Create an account</CardTitle>
+        </CardHeader>
         {isFullForm && (
           <>
-            <div className="">
-              <label htmlFor="first_name" className="text-sm">
-                First Name:
-              </label>
-              <input
-                type="text"
-                placeholder="First Name"
-                name="first_name"
-                value={formData.first_name}
-                onChange={handleInputChange}
-                required
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 md:mb-2">
+            <div className="mb-2 md:mb-0 ">
+                <label htmlFor="first_name" className="text-sm">
+                  First Name:
+                </label>
+                <Input
+                  type="text"
+                  placeholder="First Name"
+                  name="first_name"
+                  value={formData.first_name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="mb-2 md:mb-0 ">
+                <label htmlFor="last_name" className="text-sm">
+                  Last Name:
+                </label>
+                <Input
+                  type="text"
+                  placeholder="Last Name"
+                  name="last_name"
+                  value={formData.last_name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
             </div>
-            <input
-              type="text"
-              placeholder="Last Name"
-              name="last_name"
-              value={formData.last_name}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Organization Name"
-              name="organization_name"
-              value={formData.organization_name}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              type="text"
-              placeholder="Organization Phone"
-              name="organization_phone"
-              value={formData.organization_phone}
-              onChange={handleInputChange}
-              required
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2  md:gap-10 md:mb-2">
+              <div className="mb-2 md:mb-0 ">
+                <label htmlFor="organization_name" className="text-sm">
+                  Organization Name:
+                </label>
+                <Input
+                  type="text"
+                  placeholder="Organization Name"
+                  name="organization_name"
+                  value={formData.organization_name}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="mb-2 md:mb-0 ">
+                <label htmlFor="organization_phone" className="text-sm">
+                  Organization Phone:
+                </label>
+                <Input
+                  type="tel"
+                  placeholder="Organization Phone"
+                  name="organization_phone"
+                  value={formData.organization_phone}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
           </>
         )}
-        <input
-          type="email"
-          placeholder="Email Address"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Enter your Password"
-          name="password"
-          value={formData.password}
-          required
-          onChange={handleInputChange}
-        />
-        <button>{buttonText}</button>
-        <p>
-          {linkDescription}
-          <Link href={linkHref}>{linkText}</Link>
+        <div className="mb-2">
+          <label htmlFor="email" className="text-sm">
+            Email:
+          </label>
+          <Input
+            type="email"
+            placeholder="Enter your Email"
+            name="email"
+            value={formData.email}
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-2">
+          <label htmlFor="password" className="text-sm">
+            Password:
+          </label>
+          <Input
+            type="password"
+            placeholder="Enter your Password"
+            name="password"
+            value={formData.password}
+            required
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="text-center mt-6">
+        <Button className="w-full" size="lg">{buttonText}</Button>
+        <p className="text-sm mt-5">
+          {linkDescription} {" "}
+          <Link href={linkHref} className=" underline">{linkText}</Link>
         </p>
+
+          </div>
+          </Card>
       </form>
     </div>
   );
