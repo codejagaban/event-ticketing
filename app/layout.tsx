@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Onest } from "next/font/google";
+import { Onest } from "next/font/google";
 import "./globals.css";
 
 const onest = Onest({ subsets: ["latin"] });

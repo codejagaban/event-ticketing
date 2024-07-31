@@ -59,7 +59,7 @@ export default function AuthForm({
       >
         <Card className="md:w-[600px] py-5 md:px-10 px-5">
         <CardHeader>
-        <CardTitle className="text-3xl text-center">Create an account</CardTitle>
+            <CardTitle className="text-3xl text-center">{title}</CardTitle>
         </CardHeader>
         {isFullForm && (
           <>
@@ -152,8 +152,16 @@ export default function AuthForm({
         <p className="text-sm mt-5">
           {linkDescription} {" "}
           <Link href={linkHref} className=" underline">{linkText}</Link>
-        </p>
-
+            </p>
+            {
+              !isFullForm && (
+                <p className="text-sm mt-5">
+                  <Link href="/forgot-password" className="underline">
+                    Forgot Password?
+                  </Link>
+                </p>
+              )
+           }
           </div>
           </Card>
       </form>
