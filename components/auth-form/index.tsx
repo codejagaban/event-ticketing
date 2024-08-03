@@ -168,13 +168,13 @@ export default function AuthForm({
               value={formData.password}
               onChange={handleInputChange}
             />
-            <button
+           {isFullForm && <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3 top-1/2 transform translate-y-1/3"
             >
               {showPassword ? <EyeClosedIcon /> : <EyeOpenIcon />}
-            </button>
+            </button>}
             {errors.password && (
               <span className="text-red-500 text-[13px]">
                 {errors.password}
